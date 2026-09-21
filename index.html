@@ -6,12 +6,12 @@
     <title>3rd Year Med Student Dashboard</title>
     <style>
         :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
+            --bg-color: #0f0f12;
+            --card-bg: #18181c;
             --accent: #bb86fc;
             --accent-hover: #9965f4;
             --text: #e0e0e0;
-            --border: #333333;
+            --border: #2a2a30;
         }
 
         * {
@@ -24,6 +24,8 @@
             background-color: var(--bg-color);
             color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            height: 100vh;
+            overflow: hidden;
         }
 
         /* Top Bar: Title & College Buttons */
@@ -31,15 +33,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
+            margin-bottom: 12px;
+            height: 40px;
         }
 
         h1 {
             margin: 0;
             color: var(--accent);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
         }
 
         .btn-group {
@@ -48,50 +50,68 @@
         }
 
         .btn {
-            background-color: var(--accent);
-            color: #000;
-            padding: 8px 14px;
+            background-color: rgba(187,134,252,0.12);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 6px 12px;
             border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 0.85rem;
-            transition: background 0.2s;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
         }
 
         .btn:hover {
-            background-color: var(--accent-hover);
-            color: #fff;
+            background-color: var(--accent);
+            color: #000;
         }
 
         /* Dashboard Main Grid Layout */
         .grid-container {
             display: grid;
-            grid-template-columns: 2fr 1.2fr 1fr;
+            grid-template-columns: 1.3fr 1fr 0.8fr;
             grid-template-rows: 1fr 1fr;
-            gap: 15px;
-            height: calc(100vh - 85px);
+            gap: 12px;
+            height: calc(100vh - 82px);
         }
 
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            position: relative;
         }
 
         .card-header {
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.05);
-            font-weight: bold;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            font-weight: 600;
             color: var(--accent);
             border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        /* Google Sheet Responsive Scaling Container */
+        .sheet-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sheet-iframe {
+            width: 130%;
+            height: 130%;
+            border: none;
+            transform: scale(0.77);
+            transform-origin: 0 0;
         }
 
         iframe {
@@ -105,9 +125,9 @@
         .task-btn {
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             background: rgba(187,134,252,0.15);
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
             border: 1px solid var(--accent);
             transition: 0.2s;
@@ -125,11 +145,11 @@
             background: var(--card-bg);
             color: var(--text);
             border: none;
-            padding: 12px;
+            padding: 10px;
             resize: none;
             font-family: inherit;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            line-height: 1.4;
         }
 
         textarea:focus {
@@ -138,13 +158,19 @@
 
         /* Mobile Responsive */
         @media (max-width: 1024px) {
+            body { height: auto; overflow: auto; }
             .grid-container {
                 display: flex;
                 flex-direction: column;
                 height: auto;
             }
             .card {
-                height: 400px;
+                height: 380px;
+            }
+            .sheet-iframe {
+                width: 100%;
+                height: 100%;
+                transform: none;
             }
         }
     </style>
@@ -167,35 +193,36 @@
 
         <!-- SECTION 0: Google Sheets Tracker (Spans 2 rows on left) -->
         <div class="card" style="grid-row: span 2;">
-            <div class="card-header">📊 0. Lecture Progress Tracker (Google Sheets)</div>
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTon_ieYKJOxCH9ISQvfaPuuEtPd53OQxu2DigXQvjASJhrBK1PMmYwf9Oz3IsnRJgBEAvoxcX0DX57/pubhtml?widget=true&amp;headers=false" style="width:100%; height:100%; border:none;"></iframe>
+            <div class="card-header">📊 0. Lecture Progress Tracker</div>
+            <div class="sheet-container">
+                <iframe class="sheet-iframe" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTon_ieYKJOxCH9ISQvfaPuuEtPd53OQxu2DigXQvjASJhrBK1PMmYwf9Oz3IsnRJgBEAvoxcX0DX57/pubhtml?widget=true&amp;headers=false"></iframe>
+            </div>
         </div>
 
-        <!-- SECTION 1: Google Calendar & Tasks (Includes Agenda/Deadlines) -->
-        <div class="card" style="grid-column: span 2;">
+        <!-- SECTION 1: Google Calendar (Live View) -->
+        <div class="card">
             <div class="card-header">
-                <span>📅 1. Google Calendar (Live View)</span>
+                <span>📅 1. Google Calendar</span>
                 <a href="https://assistant.google.com/tasks" target="_blank" class="task-btn">
-                    ☑️ Open Google Tasks
+                    ☑️ Open Tasks
                 </a>
             </div>
-            <!-- Live Embedded Google Calendar -->
             <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FRiyadh&showPrint=0&src=YWZuYW5mYW5mb25lQGdtYWlsLmNvbQ&color=%23039be5" style="border:0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
         </div>
 
-        <!-- SECTION 2: Google Drive Lectures -->
+        <!-- SECTION 2: General To-Do List -->
         <div class="card">
-            <div class="card-header">📁 2. Google Drive Lectures</div>
-            <iframe src="https://drive.google.com/embeddedfolderview?id=11C9jc1dTIEq5FYpohQFXofGxSw9okxq6#list" width="100%" height="100%" frameborder="0"></iframe>
-        </div>
-
-        <!-- SECTION 3: General To-Do List (Auto-saved) -->
-        <div class="card">
-            <div class="card-header">✅ 3. General To-Do List</div>
+            <div class="card-header">✅ 2. General To-Do List</div>
             <textarea id="todoText" placeholder="- Finish Heart Failure slides&#10;- Do 20 AMBOSS questions&#10;- Review OSCE cardiovascular exam" oninput="saveData()"></textarea>
         </div>
 
-        <!-- SECTION 4: Idea Scratchpad / Dump Box (Auto-saved) -->
+        <!-- SECTION 3: Google Drive Lectures -->
+        <div class="card">
+            <div class="card-header">📁 3. Google Drive Lectures</div>
+            <iframe src="https://drive.google.com/embeddedfolderview?id=11C9jc1dTIEq5FYpohQFXofGxSw9okxq6#list" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+
+        <!-- SECTION 4: Idea Dump Box -->
         <div class="card">
             <div class="card-header">💡 4. Idea Dump Box</div>
             <textarea id="ideaText" placeholder="Dump any quick ideas, professor pearls, or clinical reminders here..." oninput="saveData()"></textarea>
