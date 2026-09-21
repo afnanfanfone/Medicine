@@ -66,10 +66,10 @@
             color: #000;
         }
 
-        /* Dashboard Main Grid Layout */
+        /* Dashboard Main Grid Layout - WIDER TRACKER (1.8fr), BALANCED COLUMNS */
         .grid-container {
             display: grid;
-            grid-template-columns: 1.3fr 1fr 0.8fr;
+            grid-template-columns: 1.8fr 1.1fr 1fr;
             grid-template-rows: 1fr 1fr;
             gap: 12px;
             height: calc(100vh - 82px);
@@ -98,7 +98,7 @@
             align-items: center;
         }
 
-        /* Google Sheet Responsive Scaling Container */
+        /* Google Sheet Scaling Container so it fits cleanly without massive zoom */
         .sheet-container {
             width: 100%;
             height: 100%;
@@ -107,10 +107,10 @@
         }
 
         .sheet-iframe {
-            width: 130%;
-            height: 130%;
+            width: 125%;
+            height: 125%;
             border: none;
-            transform: scale(0.77);
+            transform: scale(0.8);
             transform-origin: 0 0;
         }
 
@@ -191,7 +191,7 @@
     <!-- MAIN DASHBOARD GRID -->
     <div class="grid-container">
 
-        <!-- SECTION 0: Google Sheets Tracker (Spans 2 rows on left) -->
+        <!-- COLUMN 1: Google Sheets Tracker (Takes full height on left, wider column) -->
         <div class="card" style="grid-row: span 2;">
             <div class="card-header">📊 0. Lecture Progress Tracker</div>
             <div class="sheet-container">
@@ -199,7 +199,7 @@
             </div>
         </div>
 
-        <!-- SECTION 1: Google Calendar (Live View) -->
+        <!-- COLUMN 2 TOP: Google Calendar -->
         <div class="card">
             <div class="card-header">
                 <span>📅 1. Google Calendar</span>
@@ -210,19 +210,19 @@
             <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FRiyadh&showPrint=0&src=YWZuYW5mYW5mb25lQGdtYWlsLmNvbQ&color=%23039be5" style="border:0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
         </div>
 
-        <!-- SECTION 2: General To-Do List -->
+        <!-- COLUMN 3 TOP: General To-Do List -->
         <div class="card">
             <div class="card-header">✅ 2. General To-Do List</div>
             <textarea id="todoText" placeholder="- Finish Heart Failure slides&#10;- Do 20 AMBOSS questions&#10;- Review OSCE cardiovascular exam" oninput="saveData()"></textarea>
         </div>
 
-        <!-- SECTION 3: Google Drive Lectures -->
+        <!-- COLUMN 2 BOTTOM: Google Drive Lectures -->
         <div class="card">
             <div class="card-header">📁 3. Google Drive Lectures</div>
             <iframe src="https://drive.google.com/embeddedfolderview?id=11C9jc1dTIEq5FYpohQFXofGxSw9okxq6#list" width="100%" height="100%" frameborder="0"></iframe>
         </div>
 
-        <!-- SECTION 4: Idea Dump Box -->
+        <!-- COLUMN 3 BOTTOM: Idea Dump Box (Moved right under To-Do!) -->
         <div class="card">
             <div class="card-header">💡 4. Idea Dump Box</div>
             <textarea id="ideaText" placeholder="Dump any quick ideas, professor pearls, or clinical reminders here..." oninput="saveData()"></textarea>
