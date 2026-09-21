@@ -66,7 +66,7 @@
             color: #000;
         }
 
-        /* Dashboard Main Grid Layout - WIDER TRACKER (1.8fr), BALANCED COLUMNS */
+        /* Dashboard Main Grid Layout */
         .grid-container {
             display: grid;
             grid-template-columns: 1.8fr 1.1fr 1fr;
@@ -98,7 +98,25 @@
             align-items: center;
         }
 
-        /* Google Sheet Scaling Container so it fits cleanly without massive zoom */
+        /* Small Action Buttons in Card Headers */
+        .header-btn {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.75rem;
+            background: rgba(187,134,252,0.15);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--accent);
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .header-btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* Google Sheet Scaling Container */
         .sheet-container {
             width: 100%;
             height: 100%;
@@ -119,23 +137,6 @@
             height: 100%;
             border: none;
             background: #ffffff;
-        }
-
-        /* Task Button in Calendar Header */
-        .task-btn {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.75rem;
-            background: rgba(187,134,252,0.15);
-            padding: 3px 8px;
-            border-radius: 4px;
-            border: 1px solid var(--accent);
-            transition: 0.2s;
-        }
-
-        .task-btn:hover {
-            background: var(--accent);
-            color: #000;
         }
 
         /* Textarea for Scratchpad & To-Do */
@@ -191,9 +192,14 @@
     <!-- MAIN DASHBOARD GRID -->
     <div class="grid-container">
 
-        <!-- COLUMN 1: Google Sheets Tracker (Takes full height on left, wider column) -->
+        <!-- COLUMN 1: Google Sheets Tracker with EDIT BUTTON -->
         <div class="card" style="grid-row: span 2;">
-            <div class="card-header">📊 0. Lecture Progress Tracker</div>
+            <div class="card-header">
+                <span>📊 0. Lecture Progress Tracker</span>
+                <a href="https://docs.google.com/spreadsheets/d/1m9Fyx_QZWZsb6vsAFG5ZUrGPBJUg69M4mSOIKG9iYqo/edit?usp=sharing" target="_blank" class="header-btn">
+                    ✏️ Edit Sheet
+                </a>
+            </div>
             <div class="sheet-container">
                 <iframe class="sheet-iframe" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTon_ieYKJOxCH9ISQvfaPuuEtPd53OQxu2DigXQvjASJhrBK1PMmYwf9Oz3IsnRJgBEAvoxcX0DX57/pubhtml?widget=true&amp;headers=false"></iframe>
             </div>
@@ -203,7 +209,7 @@
         <div class="card">
             <div class="card-header">
                 <span>📅 1. Google Calendar</span>
-                <a href="https://assistant.google.com/tasks" target="_blank" class="task-btn">
+                <a href="https://assistant.google.com/tasks" target="_blank" class="header-btn">
                     ☑️ Open Tasks
                 </a>
             </div>
@@ -222,7 +228,7 @@
             <iframe src="https://drive.google.com/embeddedfolderview?id=11C9jc1dTIEq5FYpohQFXofGxSw9okxq6#list" width="100%" height="100%" frameborder="0"></iframe>
         </div>
 
-        <!-- COLUMN 3 BOTTOM: Idea Dump Box (Moved right under To-Do!) -->
+        <!-- COLUMN 3 BOTTOM: Idea Dump Box -->
         <div class="card">
             <div class="card-header">💡 4. Idea Dump Box</div>
             <textarea id="ideaText" placeholder="Dump any quick ideas, professor pearls, or clinical reminders here..." oninput="saveData()"></textarea>
